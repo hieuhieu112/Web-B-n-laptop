@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Table Order</h2>
+			
+			<form th:action="@{/Employee/Order/search}" method="post">
+							<input th:value="${param.keyword}" name="keyword" placeholder="Type anything to search." style="border-radius: 10px; width: 400px;"> </form>
+			
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Customer</th>
+						<th>Receiver</th>
+						<th>Address</th>
+						<th>Status</th>
+						<th>Number Phone</th>
+						<th>Order Date</th>
+						<th>Amount</th>						
+						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="order : ${listOrder}">
+				
+					<tr>						
+						<td>[[${order.id}]]</td>
+						<td>[[${order.customer.fullname}]]</td>
+						<td>[[${order.receiver}]]</td>
+						<td>[[${order.address}]]</td>
+						<td>[[${order.status}]]</td>
+						<td>[[${order.numberphone}]]</td>
+						<td>[[${order.orderdate}]]</td>
+						<td>[[${#numbers.formatInteger(order.amount,0)}]]</td>
+						<td>
+							<a th:href="@{/Employee/Order/{id}(id=${order.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

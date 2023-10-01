@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+	
+</head>
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<center>			
+			<h3>Customer:[[${order.customer.id}]] - [[${order.customer.fullname}]]</h3>
+			<div>From [[${order.orderdate}]] to [[${order.requiredate}]]</div>
+			
+			<div>Reciver: [[${order.receiver}]]</div>
+			<div>Address: [[${order.address}]]</div>
+			<div>Description: [[${order.description}]]</div>
+			
+			<div>Number Phone:[[${order.numberphone}]]</div>
+			<div>
+				<th:block th:if="${order.status == 1}">Chua Nhan don</th:block>
+				<th:block th:if="${order.status == 2}">Da Nhan DOn</th:block>
+				<th:block th:if="${order.status == 3}">Dang giao hang</th:block>
+				<th:block th:if="${order.status == 4}">Da Giao Hang</th:block>
+				<th:block th:if="${order.status == 0}">Da Huy Don</th:block>
+			</div>
+			
+			<nav class="">
+				<div class="container-fluid d-flex" style ="justify-content: center;text-align: center;">
+					<div class="wrapper-table-list-customer" style="margin: 0px;">
+						<h2>Table Detail Order</h2>
+
+						<table class="table table-hover">
+							<thead style="background-color: #353a40; color: #ccc;">
+								<tr>
+									<th>id</th>
+									<th>quantity</th>
+									<th>unitprice</th>
+									<th>discount</th>
+									<th>Name Product</th>
+									
+									<th></th>
+								</tr>
+							</thead>
+							<tbody th:each="orderDetail : ${list}">
+
+								<tr>
+									<td>[[${orderDetail.id}]]</td>
+									<td>[[${orderDetail.quantity}]]</td>
+									<td>[[${orderDetail.unitprice}]]</td>
+									<td>[[${orderDetail.discount}]]</td>
+									<td>[[${orderDetail.product.nameproduct}]]</td>
+									
+									<td><a th:href="@{/listProduct/{id}(id=${orderDetail.product.id})}">
+											<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+									</a></td>
+									
+								</tr>
+								
+							</tbody>
+							<tr>
+								<td>Total:</td>
+								<td></td>
+								<td colspan="4"><div style="text-align: start;padding-left: 30px;">[[${order.amount}]]</div></td>
+								
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				</nav>
+		</center>
+	</section>
+	<footer th:insert="import/footer.html"></footer>
+	
+	
+</body>
+</html>

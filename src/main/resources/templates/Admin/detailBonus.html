@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+
+<body>
+	<div class = "all" style = "display: flex;">
+		<div th:insert="Admin/slideBar.html" style="height: 100%;"> </div>
+			<div class="row d-flex justify-content-center align-items-center h-100 w-100">
+					<div class="col-lg-3 col-xl-11">
+						<div class="text-black" style="border-radius: 25px;">
+							<div class="card-body p-md-5" style="padding-top: 0px !important;">
+								
+								<div class="row" style ="justify-content: center;">
+									<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+										<p class="text-center h1 fw-bold mx-1 mx-md-4">Bonus Setting</p>
+										<p class="text-center h5">ID:[[${bonus.id}]]</p>
+										<form class="mx-1 mx-md-4" th:action="@{/Admin/listBonus/Save}" method="post">
+											
+											<p style="color: red;">[[${message}]]</p>
+												
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="number" id="form3Example1c" class="form-control" name="amount" th:value="@{${bonus.amount}}"/>
+													<label class="form-label" for="form3Example1c">amount *</label>
+												</div>
+											</div>
+											
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="text" id="f	orm3Example1c" class="form-control" name ="adminUsername" th:value="@{${bonus.admin.username}}" readonly="readonly"/>
+													<label class="form-label" for="form3Example1c">Admin user *</label>
+												</div>
+											</div>
+											
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="text" id="form3Example1c" class="form-control" name="reason" th:value="@{${bonus.reason}}"/>
+													<label class="form-label" for="form3Example1c">Reason *</label>
+												</div>
+											</div>			
+											
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="date" id="form3Example1c" class="form-control" name="datewritee" th:value="@{${bonus.datewrite}}"/>
+													<label class="form-label" for="form3Example1c">Date Write *</label>
+												</div>
+											</div>		
+											
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="date" id="form3Example1c" class="form-control" name="datestarte" th:value="@{${bonus.datestart}}"/>
+													<label class="form-label" for="form3Example1c">Date Start *</label>
+												</div>
+											</div>			
+											
+											<div class="d-flex flex-row align-items-center mb-4">
+												<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+												<div class="form-outline flex-fill mb-0">
+													<input type="date" id="form3Example1c" class="form-control" name="dateende" th:value="@{${bonus.dateend}}"/>
+													<label class="form-label" for="form3Example1c">Date End *</label>
+												</div>
+											</div>				
+
+											<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+												<button type="submit"
+													class="btn btn-primary btn-lg">Save</button>
+											</div>
+
+										</form>
+
+									</div>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+	
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

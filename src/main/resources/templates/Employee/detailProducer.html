@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+
+<body>
+	<div class = "all" style = "display: flex;">
+		<div th:insert="Employee/slideBar.html" style="height: 100%;"> </div>
+		<div class ="wrapper-table-list-customer">
+
+			<section>
+				
+				<div class="container" style ="display: flex;">
+				
+				<div th:if ="${producer.logo}">					
+			
+				</div>
+					<div class="row d-flex justify-content-center align-items-center h-100 w-100">
+						<div class="col-lg-12 col-xl-11">
+							<div class="text-black" style="border-radius: 25px;">
+								<div class="card-body p-md-5" style="padding-top: 0px !important;">
+									<div class="row" style ="justify-content: flex-start;">
+										<div class="">
+
+											<p class="text-center h1 fw-bold mx-1 mx-md-4">Account Setting</p>
+											<p class="text-center h5">ID:[[${producer.id}]]</p>
+											<form class="mx-1 mx-md-4 d-flex" style="justify-content: space-between;">
+											
+												<div class="left-set d-flex" style="max-width: 650px;flex-direction: column;">
+													<img alt="Avatar" style="max-width: 400px; margin-right: 30px;"th:src="@{'../../images/producer/'+ ${producer.logo}}">
+													
+												</div>
+												
+												
+												<div class="right-set" style="padding-right: 40px;">
+													
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" name="nameproducer" th:value="@{${producer.nameproducer}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Name producer</label>
+														</div>
+													</div>
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" name="address" th:value="@{${producer.address}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Producer Address</label>
+														</div>
+													</div>		
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="email" id="form3Example1c" class="form-control" name="email" th:value="@{${producer.email}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Producer Email</label>
+														</div>
+													</div>		
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" name="numberphone" th:value="@{${producer.numberphone}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Producer Number Phone</label>
+														</div>
+													</div>						
+	
+													
+												</div>
+											</form>
+
+										</div>
+										<p style="color: red;">[[${messageDeleteProduct}]]</p>
+										<table class="table table-hover mt-5">
+											<thead style="background-color: #353a40; color: #ccc;">
+												<tr>
+													<th>id</th>
+													<th>Name</th>
+													<th>Category</th>
+													<th>Quantity</th>
+													<th>Date</th>
+													<th>unitprice</th>
+													<th>Discount</th>
+													<th></th>
+												</tr>
+											</thead>
+											<tbody th:each="product : ${listProduct}">
+											
+												<tr>						
+													<td>[[${product.id}]]</td>
+													<td>[[${product.nameproduct}]]</td>
+													<td>[[${product.category.namecategoryen}]]</td>
+													<td>[[${product.quantity}]]</td>
+													<td>[[${product.productdate}]]</td>
+													<td>[[${product.unitprice}]]</td>
+													<td>[[${product.discount}]]</td>
+													<td>
+														<a th:href="@{/Employee/Product/{id}(id=${product.id})}">
+															<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+														</a>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+<head th:insert="import/import.html">
+
+</head>
+
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<div class="container">
+			<div>
+				<th:block utext="${message}"></th:block>
+			</div>
+	
+			
+			<form action="/checkNewPassCustomer" method="post" class="subscribe" style="margin-top: 10px;">
+				<h4>Change Pass</h4>
+				<p>[[${message}]]</p>
+				<input type="password" name="pw" class="forgot-pass-input-email" placeholder="Enter new password" style="margin-bottom: 20px;">
+				<input type="password" name="repw" class="forgot-pass-input-email" placeholder="Enter confirm password">
+				<input type="submit" class="forgot-pass-btn-send-code" value="Send">
+				
+				
+			</form>
+		</div>
+		
+		<footer th:insert="import/footer.html"></footer>
+	</section>
+
+
+	
+</body>
+
+</html>

@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="import/import.html">
+
+<body>
+	<header th:insert="import/header.html"> </header>
+
+	<section class="ftco-section row">
+
+		<div class="container-content"
+			style="display: flex; align-items: center;">
+			<div class="container">
+				<h2>List category</h2>
+				<p>List categories</p>
+
+				<div class="content-cate">
+					<div class="backgr" th:each="category:${categoryList}"
+						style="position: relative;">
+
+						<div class="list-category-img">
+
+							<div class="des">
+								<a th:href="@{/listCategory/{id}(id = ${category.id}) }"
+									style="margin-right: 30px;">
+									<div class="img">
+										<img class="img" th:src="@{'images/category/'+ ${category.photo}}">
+									</div>
+									 [[${category.namecategory}]]
+								</a>
+
+
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer th:insert="import/footer.html"> </footer>
+
+	</section>
+	<script th:src="@{../js/jquery.min.js}"></script>
+	<script th:src="@{../js/popper.js}"></script>
+	<script th:src="@{../js/bootstrap.min.js}"></script>
+	<script th:src="@{../js/main.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+	
+</head>
+
+<body>
+	<header th:insert="import/header.html"> </header>
+		[[${customer}]]
+		<section class="ftco-section row">
+	
+		<div class="container-content" style="display: flex; align-items: center;     flex-direction: column;">
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+				<h4 style="padding-left: 20px;">Best Seller</h4>
+					<a th:href="@{/product/bestSellers}" style="color: blue;padding-right: 20px;">See more></a>
+					
+					
+				</div>
+				
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 " style="padding-top: 30px !important;background: #e2f2ff;;" th:each="p : ${listBestSeller}">
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.id}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Newest</h4>
+					<a th:href="@{/product/newest}" style="color: blue;padding-right: 20px;">See more></a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 " style="padding-top: 30px !important;background: #e2f2ff;;" th:each="p : ${listNewest}">
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.productdate}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+						</a>
+					</div>
+				</div>
+			</div>
+
+			<div>
+			<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Most Interest</h4>
+					<a th:href="@{/product/mostInterest}" style="color: blue;padding-right: 20px;">See more></a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 " style="padding-top: 30px !important;background: #e2f2ff;;"  th:each="p : ${listInterest}">
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.views}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+						</a>
+					</div>
+				</div>		
+				
+			</div>
+			
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Big Discount</h4>
+					<a th:href="@{/product/bigDiscount}" style="color: blue;padding-right: 20px;">See more></a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 " style="padding-top: 30px !important;background: #e2f2ff;;"  th:each="p : ${listDiscount}">
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.discount}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+						</a>
+					</div>
+				</div>
+				
+			</div>		
+			
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Special</h4>
+					<a th:href="@{/product/special}" style="color: blue;padding-right: 20px;">See more></a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 " style="padding-top: 30px !important;background: #e2f2ff;;"  th:each="p : ${listSpec}">
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.special}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<footer th:insert="import/footer.html"> </footer>
+
+	</section>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{js/popper.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>

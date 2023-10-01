@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="import/import.html">
+
+<body>
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Table List Category</h2>
+			<p style="color:red;">[[${message}]]</p>
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Name</th>
+						<th>Name English</th>						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="category : ${listCategory}">
+				
+					<tr>						
+						<td>[[${category.id}]]</td>
+						<td>[[${category.namecategory}]]</td>
+						<td>[[${category.namecategoryen}]]</td>
+						<td>
+							<a th:href="@{/Admin/Category/{id}(id=${category.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							<a th:href="@{/Admin/Category/delete/{id}(id=${category.id})}">
+								<i class="fa-solid fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				
+				</tbody>
+				<tr>
+					<td colspan="7"><a style="color:#212529;" th:href="@{/Admin/listCategory/Add}"><i class="fa-solid fa-plus" style="color: #1e3050; margin-right: 5px;"></i>Add new Category</a></td>
+					
+				</tr>
+			</table>
+		</div>
+	</div>
+
+	</section>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

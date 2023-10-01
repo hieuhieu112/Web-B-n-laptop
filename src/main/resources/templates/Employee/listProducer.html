@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Table Account Customer</h2>
+			<p style="color: red;">[[${message}]]</p>
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Name Producer</th>
+						<th>Logo</th>
+						<th>Address</th>
+						<th>Email</th>
+						<th>Number Phone</th>
+						<th></th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="producer : ${listProducer}">
+				
+					<tr>						
+						<td>[[${producer.id}]]</td>
+						<td>[[${producer.nameproducer}]]</td>
+						<td>
+						
+						 	<img alt="Producer logo" th:src="@{'../../images/producer/'+ ${producer.logo}}" style ="height: 30px;">
+						</td>
+						<td>[[${producer.address}]]</td>
+						<td>[[${producer.email}]]</td>
+						<td>[[${producer.numberphone}]]</td>
+						<td>
+							<a th:href="@{/Employee/Producer/{id}(id=${producer.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+						<td>
+							<a style="color:#212529;" th:href="@{/Employee/createReceipt/{id}(id = ${producer.id})}"><i class="fa-solid fa-plus" style="color: #1e3050; margin-right: 5px;"></i>Create Receipt</a>
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>test page</title>
+</head>
+<body>
+	<div>
+		<ul>
+			<li th:utext="${user.username}"></li>
+			<li th:utext="${user.pass}"></li>
+			<select>
+				<option th:each ="re: ${remem}" th:select = "${re ==20}" th:text = "${re}">
+				</option>
+			</select>
+			<th:block th:each ="laptop:${laptops}">
+				<li>laptop:
+					<th:block th:utext="${laptop}"></th:block>
+				</li>
+			</th:block>
+			
+		</ul>
+	</div>
+</body>
+</html>

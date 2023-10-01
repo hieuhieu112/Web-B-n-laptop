@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+	
+</head>
+
+<body>
+	<header th:insert="import/header.html"> </header>
+
+	<section class="ftco-section row">
+	
+		<div class="container-content" style="display: flex; align-items: center;">
+			
+			<div class="d-flex " style="flex-wrap: wrap; padding-left: 30px; padding-right: 30px;     justify-content: center;">
+				<div class="col-sm-3 wraper-product-special" th:each="p : ${listProduct}">
+					<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+						<img class="img" style ="width: 100px;" th:title="${p.views}" th:src="@{'../images/Product/'+ ${p.photo} }">
+						<h5>[[${p.nameproduct}]]</h5>
+						<p style="color: #2b2828;">[[${p.unitprice}]]VND</p>
+					</a>
+				</div>
+			</div>
+		</div>
+
+		<footer th:insert="import/footer.html"> </footer>
+
+	</section>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{js/popper.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>

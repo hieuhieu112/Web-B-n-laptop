@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+	<div class="wrapper d-flex align-items-stretch " ></div>
+			<nav id="sidebar" class="" style="position: fixed; height: 100vh;overflow-y: scroll;" >
+				<div class="p-4 pt-3" >
+					<div class = "home-btn-slide-bar-admin" >
+						<a href="/Admin/home">Admin Home</a>
+						
+					</div>
+			        <ul class="list-unstyled components mb-5">
+			          <li class="active" style="    background: #1d1919;">
+			            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">People and Account</a>
+			            
+			            <ul class="collapse list-unstyled tab-slide-admin" id="homeSubmenu">
+			                <li>
+			                    <a href="/Admin/myAccount">My Account</a>
+			                </li>
+			                <li>
+			                    <a href="/Admin/AccountCustomer">Customer</a>
+			                </li>
+			                <li>
+			                    <a href="/Admin/AccountEmployee">Employee</a>
+			                </li>
+			            </ul>
+			          </li>			          	
+			          
+			          <li>
+		              	<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Manage Basic</a>
+			              
+			              <ul class="collapse list-unstyled tab-slide-admin" id="pageSubmenu">
+			                <li>
+			                    <a href="/Admin/listBonus">Bonus</a>
+			                </li>
+			                <li>
+			                    <a href="/Admin/listCategory">Category</a>
+			                </li>
+			                <li>
+			                    <a href="/Admin/listDepartment">Department</a>
+			                </li>
+			                <li>
+			                    <a href="/Admin/employeeType">Employee Type</a>
+			                </li>
+			                
+			              </ul>
+			          </li>
+			          <li>
+				         <a class="accordion" style="background: #1d1919;padding: 10px 0px; color: rgb(204 209 209);">
+				         	 	Manage detail
+				         	 	<i class="fa-solid fa-caret-down fa-xs"></i>
+				         	 </a>
+							
+						<div class="panel" style="background: #1d1919;padding: 0px;">
+						 	<ul style="list-style: none;">
+						 		<li>			          
+					              <a href="/Admin/listProduct">Product</a>
+					          </li>
+					          <li>
+					              <a href="/Admin/listContract">Contracts</a>
+					          </li>
+					          <li>
+				              <a href="/Admin/listOrder">Order</a>
+					          </li>
+					          <li>
+				              <a href="/Admin/listProducer">Producer</a>
+					          </li>
+					          <li>
+				              <a href="/Admin/listReceipt">Receipt</a>
+					          </li>
+							 </ul>
+						</div>
+			          </li>
+			          
+			          <li>
+				         <a class="accordion" style="background: #1d1919;padding: 10px 0px; color: rgb(204 209 209);">
+				         	 	revenue statistics
+				         	 	<i class="fa-solid fa-caret-down fa-xs"></i>
+				         	 </a>
+							
+						<div class="panel" style="background: #1d1919;padding: 0px;">
+						 	<ul style="list-style: none;">
+						 		<li>			          
+					              <a href="/Admin/statisticsByTime">revenue statistics by time</a>
+					          </li>
+					          <li>
+					              <a href="/Admin/statisticsByProduct">revenue statistics by Product</a>
+					          </li>			
+					           <li>
+					              <a href="/Admin/statisticsByCategory">revenue Sale By category</a>
+					          </li>				         
+							 </ul>
+						</div>
+			          </li>
+			         
+			          <li>
+		              <a href="/logout">Log out</a>
+			          </li>
+			        </ul>
+	
+		        <div class="footer">
+		        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							  Copyright ©<script>document.write(new Date().getFullYear());</script>
+							  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+		        </div>
+	      </div>
+    	</nav>
+    	<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+			
+			for (i = 0; i < acc.length; i++) {
+			  acc[i].addEventListener("click", function() {
+			    this.classList.toggle("active");
+			    var panel = this.nextElementSibling;
+			    if (panel.style.maxHeight) {
+			      panel.style.maxHeight = null;
+			    } else {
+			      panel.style.maxHeight = panel.scrollHeight + "px";
+			    } 
+			  });
+			}
+		</script>
+		</body>
+
+</html>

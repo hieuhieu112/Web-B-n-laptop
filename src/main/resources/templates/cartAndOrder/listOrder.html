@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+	
+</head>
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<div class="">
+			<nav class="">
+				<div class="container-fluid d-flex" style ="justify-content: center;text-align: center;">
+					<div class="">
+						<h2>Order Customer</h2>
+
+						<table class="table table-hover">
+							<thead style="background-color: #353a40; color: #ccc;">
+								<tr>
+									<th>id</th>
+									<th>orderdate</th>
+									<th>requiredate</th>
+									<th>amount</th>
+									<th>receiver</th>
+									<th>address</th>
+									
+									<th>status</th>
+									<th>numberphone</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody th:each="order : ${list}">
+
+								<tr>
+									<td>[[${order.id}]]</td>
+									<td>[[${order.orderdate}]]</td>
+									<td>[[${order.requiredate}]]</td>
+									<td>[[${order.amount}]]</td>
+									<td>[[${order.receiver}]]</td>
+									<td>[[${order.address}]]</td>
+									
+									<td>[[${order.status}]]</td>
+									<td>[[${order.numberphone}]]</td>
+									<td><a th:href="@{/cart/order/{id}(id=${order.id})}">
+											<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+									</a></td>
+									
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				</nav>
+		</div>
+	</section>
+	<footer th:insert="import/footer.html"></footer>
+	
+	
+</body>
+</html>

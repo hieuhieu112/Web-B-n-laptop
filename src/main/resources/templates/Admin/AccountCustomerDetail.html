@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+
+<body>
+		
+	
+
+	<div class = "all" style = "display: flex;">
+		<div th:insert="Admin/slideBar.html" style="height: 100%;"> </div>
+		
+		<div class ="wrapper-table-list-customer">
+			<a th:href ="@{/Admin/AccountCustomer}"><button type="button" class="btn btn-light">Back</button></a>
+			<section>
+				<div class="container" style ="height: 100%;display: flex;">
+				
+					<div class="row d-flex justify-content-center align-items-center h-100" style ="width: 900px;">
+						<div class="col-lg-12 col-xl-11">
+							<div class="text-black" style="border-radius: 25px;">
+								<div class="card-body p-md-5" style="padding-top: 0px !important;">
+									<div class="row justify-content-center">
+										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+											<p class="text-center h1 fw-bold mx-1 mx-md-4">Account Setting</p>
+											<form class="mx-1 mx-md-4" th:action ="@{/Admin/saveAccountCustomer}" th:object="${customer}" method="post" enctype="multipart/form-data">
+
+												<p style="color: red;">[[${message}]]</p>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example1c">ID*:</label>
+														<input type="text" id="form3Example1c" class="form-control" name="id" th:value="@{${customer.id}}"/>														
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example1c">Name*</label>
+														<input type="text" id="form3Example1c" class="form-control" name="fullname" th:value="@{${customer.fullname}}"/>
+													</div>
+												</div>
+												
+												<div class="d-flex align-items-center mb-4" style="flex-direction: column;">
+													<label class="form-label" for="form3Example1c">Image</label>
+													<img alt="Avatar" style="max-width: 200px;" th:src="@{'../../images/customer/'+ ${customer.photo} }">
+													
+													<input type="file" name="image" style ="width:100px;">
+													
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example1c">Address*:</label>
+														<input type="text" id="form3Example1c" class="form-control" name="address" th:value="@{${customer.address}}"/>														
+													</div>
+												</div>
+
+												<div class="input_field radio_option sex-option-customer">
+													<th:block th:if="${customer.gender} == true">
+														<div>
+												              <input type="radio" name="gender" id="gender" value="true" style="padding-right: 30px;" checked="checked">
+												              <label for="rd1">Male</label></div>
+										            	<div>
+												              <input type="radio" name="gender" value="false" id="gender">
+												              <label for="rd2">Female</label></div> 											            
+											          </th:block>
+											          
+											          <th:block th:unless="${customer.gender}">
+														<div>
+												              <input type="radio" name="gender" id="gender" value="true" style="padding-right: 30px;" >
+												              <label for="rd1">Male</label></div>
+										            	<div>
+												              <input type="radio" name="gender" id="gender" value="false"  checked="checked">
+												              <label for="rd2">Female</label></div> 											            
+											          </th:block>
+												</div>			
+												
+												
+												<div class="input_field radio_option sex-option-customer">
+													<th:block th:if="${customer.activated} == true">
+														<div>
+												              <input type="radio" name="activated" id="activated" style="padding-right: 30px;" value="true" checked="checked">
+												              <label for="rd1">activated</label></div>
+										            	<div>
+												              <input type="radio" name="activated" value="false" id="activated">
+												              <label for="rd2"> no activate</label></div> 											            
+											          </th:block>
+											          <th:block th:unless="${customer.activated}">
+														<div>
+												              <input type="radio" name="activated" id="activated" value="true" style="padding-right: 30px;" >
+												              <label for="rd1">activated</label></div>
+										            	<div>
+												              <input type="radio" name="activated" value="false" id="activated"checked="checked">
+												              <label for="rd2">no activated</label></div> 											            
+											          </th:block>
+											          
+												</div>		
+												
+												
+																						
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example3c">Your	Email*</label>
+														<input type="email" id="form3Example3c" name ="email" class="form-control" th:value="@{${customer.email}}" />
+													</div>
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example4c" >Password*</label>
+														<input type="password" id="form3Example4c" class="form-control" name="pass" th:value="@{${customer.pass}}" />
+														
+													</div>
+												</div>
+
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+													<label class="form-label" for="form3Example4cd">Phone*</label>
+														<input type="text" id="form3Example4cd"
+															class="form-control" name="numberphone" th:value="@{${customer.numberphone}}"/>
+														
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fa-solid fa-calendar-days fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+													<label class="form-label" for="form3Example4c">Birthday*</label>
+														<input type="date" id="form3Example4c" th:text="${#dates.format(date, 'MM-dd-yyyy')}" class="form-control" name="date" th:value="@{${customer.birthday}}"/>
+														
+													</div>
+												</div>												
+
+												<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+													<button type="submit" class="btn btn-primary btn-lg">Save</button>
+												</div>
+
+											</form>
+
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Customer</th>
+						<th>Receiver</th>
+						<th>Address</th>
+						<th>Status</th>
+						<th>Number Phone</th>
+						<th>Order Date</th>
+						<th>Amount</th>						
+						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="order : ${listOrder}">
+				
+					<tr>						
+						<td>[[${order.id}]]</td>
+						<td>[[${order.customer.fullname}]]</td>
+						<td>[[${order.receiver}]]</td>
+						<td>[[${order.address}]]</td>
+						<td>[[${order.status}]]</td>
+						<td>[[${order.numberphone}]]</td>
+						<td>[[${order.orderdate}]]</td>
+						<td>[[${#numbers.formatInteger(order.amount,0)}]]</td>
+						<td>
+							<a th:href="@{/Admin/Order/{id}(id=${order.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+			</section>
+		</div>
+	</div>
+	
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>
