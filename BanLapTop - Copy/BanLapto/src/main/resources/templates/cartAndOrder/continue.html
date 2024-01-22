@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+
+#myImg, #myImg2{
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#myImg:hover,#myImg2:hover {opacity: 0.7;}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 3; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 500px; 
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (image) */
+.modal-content1 {
+  margin: auto;
+  display: block;
+  width: 500px;
+}
+
+/* Caption of Modal Image */
+#caption {
+  margin: auto;
+  display: block;
+  width: 80%;
+  max-width: 700px;
+  text-align: center;
+  color: #ccc;
+  padding: 10px 0;
+  height: 150px;
+}
+
+/* Add Animation */
+.modal-content1, #caption {  
+  -webkit-animation-name: zoom;
+  -webkit-animation-duration: 0.6s;
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+@-webkit-keyframes zoom {
+  from {-webkit-transform:scale(0)} 
+  to {-webkit-transform:scale(1)}
+}
+
+@keyframes zoom {
+  from {transform:scale(0)} 
+  to {transform:scale(1)}
+}
+
+/* The Close Button */
+.close {
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  color: #f1f1f1;
+  font-size: 40px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+  color: #bbb;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+i:hover{
+	cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px){
+  .modal-content1 {
+    width: 100%;
+  }
+}
+</style>
+<body>
+	<header th:insert="import/header.html"> </header>
+	
+	<form class="mx-1 mx-md-4" style="    padding: 100px 200px 0 200px;" th:action ="@{/cart/continue}" th:object="${order}" method="post">
+		<center><h3>Thông tin người nhận</h3></center>
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example1c">Người nhận:</label>
+				<input type="text" id="form3Example1c" class="form-control" name="receiver" th:value="@{${order.receiver}}"/>														
+			</div>
+		</div>
+		
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fa-solid fa-phone fa-lg me-3 fa-fw" ></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example1c">SDT:</label>
+				<input type="text" id="form3Example1c" class="form-control" name="numberphone" th:value="@{${order.numberphone}}"/>														
+			</div>
+		</div>
+		
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fa-solid fa-house me-3 fa-fw fa-lg"></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example1c">địa chỉ</label>
+				<input type="text" id="form3Example1c" class="form-control" name="address" th:value="@{${order.address}}"/>
+			</div>
+		</div>
+		
+		
+		
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fa-solid fa-calendar-days me-3 fa-fw fa-lg"></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example1c">Ngày đặt:</label>
+				<input type="date" id="form3Example1c" th:text="${#dates.format(date, 'MM-dd-yyyy')}" class="form-control" name="orderdate" th:value="@{${order.orderdate}}" readonly="readonly"/>														
+			</div>
+		</div>	
+								
+
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fa-solid fa-money-bill fa-lg me-3 fa-fw"></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example3c">Tổng tiền</label>
+				<input type="number" id="form3Example3c" name ="amount" class="form-control" th:value="@{${amount}}" readonly="readonly"/>
+			</div>
+		</div>
+
+
+		</div>
+
+		
+		<div class="d-flex flex-row align-items-center mb-4">
+			<i class="fa-solid fa-file-lines fa-lg me-3 fa-fw"></i>
+			<div class="form-outline flex-fill mb-0">
+				<label class="form-label" for="form3Example4cd">Ghi chú</label>
+				
+				<textarea rows="3" name="description" class="form-control" th:value="@{${order.description}}"></textarea>
+				
+			</div>
+		</div>
+		
+		<!-- <div class="input_field radio_option sex-option-customer">
+			
+				<div>
+		              <input type="radio" name="pay" id="rd1" value="1" style="padding-right: 30px;" checked="checked" onclick="if(this.checked){pay1Checked()}">
+		              <label for="rd1">Thanh toán khi nhận hàng</label></div>
+            	<div>
+		              <input type="radio" name="pay" id="rd2" value="2" style="padding-right: 30px;" onclick="if(this.checked){pay2Checked()}">
+		              <label for="rd2">Momo</label>
+		        </div> 
+		        <div>
+		              <input type="radio" name="pay" id="rd2" value="3" onclick="if(this.checked){pay3Checked()}">
+		              <label for="rd2">Bank</label>
+		        </div> 
+	            
+	          
+		</div> -->
+		
+		<!-- <div class="d-flex" style="    justify-content: space-around;">
+			<img alt="" id="myImg" th:src="@{'../../images/Pay/VIB.jpg'}"   style="width:100%;max-width:300px">
+			<img alt="" id="myImg2" th:src="@{'../../images/Pay/ViettinBank.jpg'}"   style="width:100%;max-width:300px">
+		</div>
+		
+		<center style="margin: 10px 0;">Vui lòng soạn nội dung: <b>THANHTOAN[[${order.id}]]</b></center> --!>
+		
+		<!-- The Modal -->
+		<div id="myModal" class="modal">
+		  <img alt="" th:src="@{'../../images/den.jpg'}" style="width: 10000px; height: 10000px;position: fixed; z-index: 2;">
+		  <i class="fa-solid fa-xmark fa-2xs close" style="    z-index: 5; position: fixed;color: #fff;font-size: 50px;right: 40px;top: 40px;"></i>
+		  <img alt="" class="modal-content1" id="img01"  style="z-index: 3; max-width: 500px; position: fixed;left: calc(50% - 250px);top: calc(50% - 350px);">
+		  
+		</div>
+		
+													
+
+		<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+			<button type="submit" class="btn btn-primary btn-lg">Thanh Toán</button>
+		</div>
+
+	</form>
+	
+	<section class="ftco-section">
+		<div class="">
+			<nav class="">
+				<div class="container-fluid d-flex" style ="justify-content: center;text-align: center;">
+					<div class="" style="width: 80%;">
+						<h2>Đặt hàng</h2>
+
+						<table class="table table-hover">
+							<thead style="background-color: #353a40; color: #ccc;">
+								<tr>
+									<th>id</th>
+									<th>Tên</th>
+									<th>Số lượng</th>
+									
+									<th>giá đơn vị</th>
+									<th>giảm giá</th>
+									<th>tiền($)</th>
+								</tr>
+							</thead>
+							<tbody th:each="ordeDetail : ${orderDetails}">
+
+								<tr>
+									<td>[[${ordeDetail.product.id}]]</td>
+									<td>[[${ordeDetail.product.nameproduct}]]</td>
+									<td>[[${ordeDetail.quantity}]]</td>
+									
+									<td>[[${ordeDetail.product.unitprice}]]</td>
+									<td>[[${ordeDetail.product.discount}]]</td>
+									<td >[[${(ordeDetail.quantity * ordeDetail.product.unitprice *(1-ordeDetail.product.discount))}]]
+									</td>
+									
+									
+								</tr>
+								
+							</tbody>
+							
+						</table>
+						
+								
+					</div>
+
+				</div>
+				</nav>
+		</div>
+		
+		
+	</section>
+	
+	
+	
+	<footer th:insert="import/footer.html"></footer>
+	</nav>
+
+	<script
+		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+		integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"
+		integrity="sha384-mQ93GR66B00ZXjt0YO5KlohRA5SY2XofN4zfuZxLkoj1gXtW8ANNCe9d5Y3eG5eD"
+		crossorigin="anonymous"></script>
+		
+		<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		target=document.querySelector(".cartLink")
+		target.classList.add("active")
+		
+		
+		document.getElementById("rd1").checked;
+		function pay1Checked(){
+			document.querySelector(".pay").innerHTML = "Thanh toán tiền mặt";
+		}
+		
+		function pay2Checked(){
+			document.querySelector(".pay").innerHTML = "thanh toán momo";
+		}
+		
+		function pay3Checked(){
+			document.querySelector(".pay").innerHTML = "thanh toán ngân hàng";
+		}
+	</script>
+	
+	<script>
+			// Get the modal
+			var modal = document.getElementById("myModal");
+			
+			// Get the image and insert it inside the modal - use its "alt" text as a caption
+			var img = document.getElementById("myImg");
+			var modalImg = document.getElementById("img01");
+			
+			img.onclick = function(){
+				
+			var body = document.getElementsByTagName("BODY")[0];
+			  
+			  var modalImg = document.getElementById("img01");
+			  modal.style.display = "block";
+			  modalImg.src = this.src;
+			  
+			 
+			}
+			
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+			
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() { 
+			  modal.style.display = "none";
+			  var x = document.getElementsByTagName("BODY")[0];
+			  x.style.backgroundColor = "#f5f5f5";
+			  
+			}
+			
+			var img = document.getElementById("myImg2");
+			var modalImg = document.getElementById("img01");
+			
+			img.onclick = function(){
+				
+			var body = document.getElementsByTagName("BODY")[0];
+			  
+			  var modalImg = document.getElementById("img01");
+			  modal.style.display = "block";
+			  modalImg.src = this.src;
+			  
+			 
+			}
+			
+			// Get the <span> element that closes the modal
+			var span = document.getElementsByClassName("close")[0];
+			
+			// When the user clicks on <span> (x), close the modal
+			span.onclick = function() { 
+			  modal.style.display = "none";
+			  var x = document.getElementsByTagName("BODY")[0];
+			  x.style.backgroundColor = "#f5f5f5";
+			  
+			}
+			
+	</script>
+</body>
+</html>

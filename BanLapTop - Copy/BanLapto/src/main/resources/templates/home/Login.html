@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head th:insert="import/import.html">
+
+<body>
+	<header th:insert="import/header.html"> </header>
+	
+	<section class="ftco-section">
+		<div class="container">
+
+			<div class="row justify-content-center">
+				<div class="col-md-7 col-lg-5">
+					<div class="login-wrap p-4 p-md-5">
+						<div class="icon d-flex align-items-center justify-content-center">
+							<span class="fa fa-user-o"></span>
+						</div>
+						<h3 class="text-center mb-4">Đăng nhập</h3>
+						<span class="login-error" th:utext="${message}"></span>
+						<form th:action="@{/login}" method="post" class="login-form">
+							<div class="form-group">
+								<input type="text" name="username" class="form-control rounded-left"
+									placeholder="Tên đăng nhập" required th:value="${adminid}">
+							</div>
+							<div class="form-group d-flex">
+								<input type="password" name="pass" class="form-control rounded-left"
+									placeholder="Mật khẩu" required  th:value="${adminpw}"> 
+							</div>
+							  <div class="mb-3 form-check">
+							    <input type="checkbox" class="form-check-input" name="rm">
+							    <label class="form-check-label" for="exampleCheck1">Lưu mật khẩu</label>
+							  </div>
+							<div class="form-group">
+								<button type="submit" name="remember"
+									class="form-control btn btn-primary rounded submit px-3">đăng nhập</button>
+							</div>
+							<div class="form-group d-md-flex">
+								<div class="w-50">
+									<!-- <label class="checkbox-wrap checkbox-primary">Remember Me
+										<input type="checkbox" checked>
+										<span class="checkmark"></span>
+									</label> -->
+									<a href="/signUp">đăng ký</a>
+								</div>
+								<div class="w-50 text-md-right">
+									<a href="/forgot">Quên mật khẩu</a>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+		<footer th:insert = "import/footer.html"></footer>
+
+	</section>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{js/popper.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>

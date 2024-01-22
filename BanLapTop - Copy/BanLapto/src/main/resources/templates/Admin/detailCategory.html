@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+
+<body>
+	<div class = "all" style = "display: flex;">
+		<div th:insert="Admin/slideBar.html" style="height: 100%;"> </div>
+		<div class ="wrapper-table-list-customer">
+
+			<section>
+			
+				<div class="container" style ="display: flex;">
+					<a th:href ="@{/Admin/listCategory}"><button type="button" class="btn btn-light mt-5">Thoát</button></a>
+					<div class="row d-flex justify-content-center align-items-center h-100 w-100">
+						<div class="col-lg-12 col-xl-11">
+							<div class="text-black" style="border-radius: 25px;">
+								<div class="card-body p-md-5" style="padding-top: 0px !important;">
+									<div class="row" style ="justify-content: flex-start;">
+										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+											<p class="text-center h1 fw-bold mx-1 mx-md-4">Loại sản phẩm</p>
+											<form class="mx-1 mx-md-4" th:action="@{/Admin/Category/save}" method="post" enctype="multipart/form-data">
+
+												<p style="color:red;">[[${message}]]</p>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" name="namecategory" th:value="@{${category.namecategory}}"/>
+														<label class="form-label" for="form3Example1c">Tên thể loại</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" name="namecategoryen" th:value="@{${category.namecategoryen}}"/>
+														<label class="form-label" for="form3Example1c">Tên tiếng anh</label>
+													</div>
+												</div>				
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<img alt="Avatar" style="max-width: 200px;" th:src="@{'../../images/category/'+ ${category.photo}}">
+														
+														<input type="file" id="form3Example1c" name="image" class="form-control" style="width: 100px;">
+														<label class="form-label" for="form3Example1c">Ảnh</label>
+													</div>
+												</div>		
+
+												<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+													<button type="submit"
+														class="btn btn-primary btn-lg">Lưu</button>
+												</div>
+
+											</form>
+
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script type="text/javascript">
+	function myFunction() {
+	    var file = document.getElementById('file').files[0];
+	    var reader = new FileReader();
+
+	    reader.onload = function(e)  {
+	        var image = document.createElement("img");
+	        // the result image data
+	        image.src = e.target.result;
+	        document.body.appendChild(image);
+	     }
+	}
+	</script>
+	<script>
+		qltk = document.querySelector(".qlsp");
+		qltk.classList.add("active")
+		qltk.classList.add("li-con")
+		
+		qltk1 = document.querySelector(".qlsp2");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

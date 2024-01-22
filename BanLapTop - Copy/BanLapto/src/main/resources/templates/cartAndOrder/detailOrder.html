@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+	
+</head>
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<center>			
+			
+			
+			<nav class="">
+				<div class="container-fluid d-flex" style ="justify-content: center;text-align: center;">
+					<div class="wrapper-table-list-customer" style="margin: 0px;">
+						<center>
+							<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+											<p class="text-center h1 fw-bold mx-1 mx-md-4">Phiếu đặt/Hoá đơn</p>
+											<p class="text-center h5">ID:[[${order.id}]]</p>
+											<form class="mx-1 mx-md-4" th:action="@{/Customer/saveOrder}" method="post">
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="date" id="form3Example1c" class="form-control" name="orderdate" th:value="@{${order.orderdate}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">Ngày đặt</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">														
+														<label class="form-label" for="form3Example1c">Tổng tiền:   [[${#numbers.formatInteger(amount,0)}]] $</label>
+													</div>
+												</div>		
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" name="receiver" th:value="@{${order.receiver}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">Người nhận</label>
+													</div>
+												</div>			
+													
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" name="address" th:value="@{${order.address}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">Địa chỉ</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<label class="form-label" for="form3Example1c">Mô tả</label>
+														<th:block th:if="${order.description} != null">
+															<p id="dess" style="background-color: #ccc; padding: 30px 0px 30px 10px; border-radius: 5px;">[[${order.description}]]</p>
+														</th:block>
+														
+														<th:block th:unless="${order.description} != null">
+															<p id="dess" style="background-color: #ccc; padding: 30px 0px 30px 10px; border-radius: 5px;">Không mô tả
+																
+															</p>
+														</th:block>
+														
+													</div>
+												</div>
+												
+												
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="number" id="form3Example1c" class="form-control" name="numberphone" th:value="@{${order.numberphone}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">số điện thoại người nhận</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${order.employee} != null">
+															<input type="text" id="form3Example1c" class="form-control" name="idEmployee" th:value="@{${order.employee.id}}" readonly="readonly"/>
+														</th:block>
+														<th:block th:if="${order.employee} == null">
+															<input type="text" id="form3Example1c" class="form-control" name="idEmployee" value="Chưa rõ" readonly="readonly"/>
+														</th:block>
+														<label class="form-label" for="form3Example1c">ID Nhân viên</label>
+													</div>
+												</div>
+												
+												<th:block th:if="${order.status} != 2">
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<div class="d-flex" style="justify-content: center;">
+															
+																	<th:block th:if = "${order.status} == 0">
+																		<center><b>Đã huỷ</b></center>
+																	</th:block>
+																	
+																	<th:block th:if = "${order.status} == 1">
+																		<center><b>đang xử lý</b></center>
+																	</th:block>
+																	
+																	<th:block th:if = "${order.status} == 3" >
+																		<center><b>đã nhận hàng</b></center>
+																	</th:block>
+															
+															
+																<th:block th:if= "${order.status} == 2">
+																	<button type="submit" class="btn btn-primary btn-lg" style="margin: auto;">Đã nhận </button>
+																</th:block>
+														</div>
+														
+														<label class="form-label" for="form3Example1c">Trạng thái đơn hàng</label>
+													</div>
+												</div>
+												</th:block>
+												
+												<th:block th:if="${order.status} == 2">
+												<div class="d-flex flex-row align-items-center mb-4">
+													
+													<div class="form-outline flex-fill mb-0">
+														
+																<th:block th:if= "${order.status} == 2">
+																	<button type="submit" class="btn btn-primary btn-lg" style="margin: auto;">Đã nhận Hàng</button>
+																</th:block>
+														</div>
+														
+														
+													</div>
+												</div>
+												</th:block>
+											</form>
+
+										</div>
+						</center>
+
+						<table class="table table-hover">
+							<thead style="background-color: #353a40; color: #ccc;">
+								<tr>
+									<th>id</th>
+									<th>Số lượng</th>
+									<th>đơn giá</th>
+									<th>Giảm giá</th>
+									<th>Tên sản phẩm</th>
+									
+									<th></th>
+								</tr>
+							</thead>
+							<tbody th:each="orderDetail : ${list}">
+
+								<tr>
+									<td>[[${orderDetail.id}]]</td>
+									<td>[[${orderDetail.quantity}]]</td>
+									<td>[[${orderDetail.unitprice}]]</td>
+									<td>[[${orderDetail.discount}]]</td>
+									<td>[[${orderDetail.product.nameproduct}]]</td>
+									
+									<td><a th:href="@{/listProduct/{id}(id=${orderDetail.product.id})}">
+											<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+									</a></td>
+									
+								</tr>
+								
+							</tbody>
+							<tr>
+								<td>Tổng tiền:</td>
+								<td></td>
+								<td colspan="4"><div style="text-align: start;padding-left: 30px;">[[${#numbers.formatInteger(amount,0)}]]</div></td>
+								
+							</tr>
+						</table>
+					</div>
+
+				</div>
+				</nav>
+		</center>
+	</section>
+	<footer th:insert="import/footer.html"></footer>
+	
+	<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		target=document.querySelector(".mangeCus")
+		target.classList.add("active")
+	</script>
+</body>
+</html>

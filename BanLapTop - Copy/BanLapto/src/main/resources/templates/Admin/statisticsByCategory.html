@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="import/import.html">
+
+<body>
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Doanh thu theo loại sản phẩm</h2>
+			
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>Loại sản phẩm</th>	
+						<th>Số lượng</th>
+						<th>Tổng tiền($)</th>											
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="e : ${list}">
+				
+					<tr>						
+						<td class= "keyy" th:data-value = "${e[0]}">[[${e[0]}]]</td>
+						<td class= 	"valuee" th:data-value = "${e[1]}">[[${e[1]}]]</td>
+						<td th:text="${new java.math.BigDecimal(e[2]).setScale(2, T(java.math.BigDecimal).ROUND_HALF_UP)}"></td>
+						<td>
+											
+						</td>
+					</tr>
+				
+				</tbody>
+				
+			</table>
+			<div id="chart_div"></div>
+		</div>
+	</div>
+
+	
+	<!-- <div th:insert="Admin/ChartSellByCategory.html"></div> -->
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+    var round = Math.round;
+      
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+		
+       
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Topping');
+        data.addColumn('number', 'Slices');
+        
+        const value = document.querySelectorAll(".valuee");        
+        const key = document.querySelectorAll(".keyy"); 
+        var val = new Array();
+        for (let i = 0; i < value.length; i++) {
+        	console.log(key[i]);
+        	val.push([key[i].getAttribute('data-value'),round(value[i].getAttribute('data-value'))])
+        }
+        data.addRows(val);
+
+       
+        var options = {'title':'Biểu đồ',
+                       'width':1000,
+                       'height':900};
+
+       
+        var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+		qltk = document.querySelector(".tkdt");
+		qltk.classList.add("active")
+		qltk.classList.add("li-con")
+		
+		qltk1 = document.querySelector(".tkdt3");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

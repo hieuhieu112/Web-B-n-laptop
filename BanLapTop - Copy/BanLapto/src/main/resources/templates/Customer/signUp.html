@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+
+<body>
+	<header th:insert="import/header.html"> </header>
+
+	<section class="ftco-section" style = "padding-top: 3em;">
+
+			<section class="vh-100" style="margin-bottom: 250px;">
+				<div class="container" style ="    height: 100%;">
+					<div class="row d-flex justify-content-center align-items-center h-100">
+						<div class="col-lg-12 col-xl-11">
+							<div class="text-black" style="border-radius: 25px; ">
+								<div class="card-body p-md-5">
+									<div class="row justify-content-center">
+										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+											<p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Đăng ký</p>
+
+											<form class="mx-1 mx-md-4" th:action = "registerCus" method="post" enctype="multipart/form-data">
+												
+												<p style="color:red;">[[${message}]]</p>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value= "${customer.id}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="text" id="form3Example1c" class="form-control" name="id" /></th:block>
+														<label class="form-label" for="form3Example1c">Tên đăng nhập</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value="@{${customer.fullname}}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="text" id="form3Example1c" class="form-control" name="fullname" /></th:block>
+														<label class="form-label" for="form3Example1c">Tên</label>
+													</div>
+												</div>
+												
+												<div class="input_field radio_option sex-option-customer">
+													<div>
+											              <input type="radio" name="gender" id="rd1" value="true" style="padding-right: 30px;">
+											              <label for="rd1">Nam</label></div>
+									            	<div>
+											              <input type="radio" name="gender" value="false" id="rd2">
+											              <label for="rd2">Nữ</label></div> 
+											          
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value= "${customer.email}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="email" id="form3Example3c" class="form-control" name ="email"/></th:block>
+														<label class="form-label" for="form3Example3c">	Email</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fa-solid fa-address-book me-3 fa-lg fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value="@{${customer.address}}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="text" id="form3Example1c" class="form-control" name="address" /></th:block>
+														<label class="form-label" for="form3Example1c">Địa chỉ</label>
+													</div>
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value= "${customer.pass}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="password" id="form3Example4c" class="form-control" name ="pass"/></th:block>
+														<label class="form-label" for="form3Example4c">Mật khẩu</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<img alt="Image" id="photoCustomer" th:src="@{'../../images/customer/'+ ${customer.photo} }">
+														</th:block>
+														<th:block th:unless="${customer}"><img alt="Ảnh" id="photoCustomer" src=""></th:block>
+														<div class="d-flex" style="align-items: center; justify-content: space-between;"> 
+															<label class="form-label" for="form3Example1c">Ảnh :</label>
+															<input type="file"  class="form-control" onchange="readURL(this);" accept="image/jpeg" style="width: 109px;margin-right: 50px;" name="image" />
+															
+														</div>
+														
+													</div>
+												</div>
+												
+												<!-- <div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-key fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="password" id="form3Example4cd"
+															class="form-control" />
+														<label class="form-label" for="form3Example4cd">Repeat your	password*</label>
+													</div>
+												</div> -->
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fa-solid fa-phone fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id" th:value= "${customer.numberphone}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="text" id="form3Example4cd" class="form-control"  name ="numberphone" /></th:block>
+														<label class="form-label" for="form3Example4cd">Điện thoại</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fa-solid fa-calendar-days fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<th:block th:if="${customer}">
+															<input type="text" id="form3Example1c" class="form-control" name="id"  th:text="${#dates.format(date, 'MM-dd-yyyy')}" th:value= "${customer.birthday}"/>
+														</th:block>
+														<th:block th:unless="${customer}"><input type="date" id="form3Example4c"  th:text="${#dates.format(date, 'MM-dd-yyyy')}" name="birthday" class="form-control" /></th:block>
+														<label class="form-label" for="form3Example4c" >Sinh nhật</label>
+													</div>
+												</div>
+												<!-- <div class="form-check d-flex justify-content-center mb-5">
+													<input class="form-check-input me-2" type="checkbox" value=""
+														id="form2Example3c" />
+													<label class="form-check-label" for="form2Example3">
+														I agree all statements in <a href="#!">Terms of service</a>
+													</label>
+												</div> -->
+
+												<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+													<button type="submit"
+														class="btn btn-primary btn-lg">Đăng ký</button>
+												</div>
+
+											</form>
+
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+		<footer th:insert="import/footer.html"></footer>
+
+	</section>
+	<script th:src="@{../js/jquery.min.js}"></script>
+	<script th:src="@{../js/popper.js}"></script>
+	<script th:src="@{../js/bootstrap.min.js}"></script>
+	<script th:src="@{../js/main.js}"></script>
+
+</body>
+
+</html>

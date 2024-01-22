@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	
+<head th:insert="import/import.html">
+
+</head>
+
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<div class="container">
+			<div>
+				[[${message}]]
+			</div>
+	
+			
+			<form action="/sendMailForgot" class="subscribe" method="post" style="margin-top: 10px;">
+				<input type="text" name="username" class="forgot-pass-input-email" placeholder="Nhập username" style="margin-bottom: 30px;">
+				<input type="submit" class="forgot-pass-btn-send-code" value="Gửi">
+			</form>
+		</div>
+		
+		<footer th:insert="import/footer.html"></footer>
+	</section>
+
+
+	
+</body>
+
+</html>

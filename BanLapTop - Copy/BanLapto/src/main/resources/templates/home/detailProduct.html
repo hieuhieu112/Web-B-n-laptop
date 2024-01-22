@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+<body>
+	<header th:insert="import/header.html"> </header>
+
+	<section class="ftco-section row">
+
+		<div class="container-content"
+			style="display: flex; align-items: center;">
+
+
+			<div class="col-sm-5"
+				style="display: flex; justify-content: center; align-items: center;">
+				<img class="img"
+					th:src="@{'../images/Product/'+ ${product.photo} }">
+
+			</div>
+			<div class="col-sm-7">
+
+				<h2>[[${product.nameproduct}]]</h2>
+				<h4>[[${product.unitprice}]] $</h4>
+				
+					<th:block th:if ="${isFavo} == true">
+						<a th:href="@{/removeToCookie/product/{id} (id = ${product.id})}"><i class="fa-solid fa-heart fa-2xl" style="color: #db3b1f;"></i></a>
+					</th:block>
+					<th:block th:unless ="${isFavo} == true">
+						<a th:href="@{/addToCookie/product/{id} (id = ${product.id})}"><i class="fa-regular fa-heart fa-2xl" style="color: #db1a1a;"></i></a>
+					</th:block>
+				
+				<div>
+					<div style="margin: 10px 0 20px 0;" th:if="${product.quantity} > 0">
+						<a th:href="@{/cart/detailProductaddToCart/{id}(id= ${product.id})}" ><button class="btn btn-add">Thêm vào giỏ hàng</button></a>
+					</div>
+					<div th:unless="${product.quantity} > 0">
+						<h3 style="color: red;">hết hàng</h3>
+					</div>
+
+					
+					
+					<h3 th:if="${product.discount}">
+						<div style="text-decoration: line-through; font-family: Helvetica, Arial, sans-serif;">[[${product.unitprice}]]</div>
+						<th:block>[[${priceAfterDiscount}]]</th:block>
+
+					</h3>
+					<h3 th:if="${product.discount}">[[${product.discount * 100}]]%
+					</h3>
+					<h5>Mô tả:</h5>
+					<p th:if="${product.description}" id ="dess" th:vall ="@{${product.description}}">[[${product.description}]]</p>
+				</div>
+			</div>
+		</div>
+		
+		<h4  class="ml-5">Yêu thích:</h4>
+		<div class="d-flex " style="flex-wrap: wrap; padding-left: 30px; padding-right: 30px;     justify-content: center;">
+			<div class="col-sm-1" th:each="p : ${favorite}">
+				<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+					<img class="img" style ="width: 100px;" th:title="${p.nameproduct}" th:src="@{'../images/Product/'+ ${p.photo}}">
+					
+				</a>
+			</div>
+		</div>
+		
+		<h4  class="ml-5">Sản phẩm liên quan:</h4>
+		<div class="d-flex " style="flex-wrap: wrap; padding-left: 30px; padding-right: 30px;     justify-content: center;">
+			<div class="col-sm-1" th:each="p : ${listProduct}">
+				<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+					<img class="img" style ="width: 100px;" th:title="${p.nameproduct}" th:src="@{'../images/Product/'+ ${p.photo}}">
+					
+				</a>
+			</div>
+		</div>
+		<h4  class="ml-5">sản phẩm được chú ý:</h4>
+		<div class="d-flex " style="flex-wrap: wrap; padding-left: 30px; padding-right: 30px;     justify-content: center;">
+			<div class="col-sm-1" th:each="p : ${viewList}">
+				<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+					<img class="img" style ="width: 100px;" th:title="${p.nameproduct}" th:src="@{'../images/Product/'+ ${p.photo}}">
+					
+				</a>
+			</div>
+		</div>
+
+		<footer th:insert="import/footer.html"> </footer>
+
+	</section>
+	<script>
+		var des = document.querySelector("#dess");
+		des.innerHTML = des.getAttribute('vall');
+	</script>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{js/popper.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main.js}"></script>
+	<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		
+	</script>
+</body>
+
+</html>

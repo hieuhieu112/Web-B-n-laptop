@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+	
+</head>
+<body>
+	<header th:insert="import/header.html"> </header>
+	<section class="ftco-section">
+		<div class="">
+			<nav class="">
+				<div class="container-fluid d-flex" style ="justify-content: center;text-align: center;">
+					<div class="">
+						<h2>Danh sách hóa đơn</h2>
+
+						<table class="table table-hover">
+							<thead style="background-color: #353a40; color: #ccc;">
+								<tr>
+									<th>id</th>
+									<th>Ngày đặt</th>
+									<th>Người nhận</th>
+									<th>Trạng thái</th>
+									<th>SDT</th>
+									<th>Người duyệt</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody th:each="order : ${list}">
+
+								<tr>
+									<td>[[${order.id}]]</td>
+									<td>[[${order.orderdate}]]</td>
+									<td>[[${order.receiver}]]</td>
+									
+									<td>
+										
+										<th:block th:if="${order.status == 1}">Đang xử lý</th:block>
+										<th:block th:if="${order.status == 2}">Đang giao</th:block>
+										<th:block th:if="${order.status == 3}">Đã giao</th:block>
+										<th:block th:if="${order.status == 0}">Đã hủy</th:block>
+									</td>
+									<td>[[${order.numberphone}]]</td>
+									<th:block th:if="${order.employee} != null">
+										<th:block th:if="${order.employee.role.id} == 0">
+											<td>[[${order.employee.id}]](Admin)</td>
+										</th:block>
+										
+										<th:block th:if="${order.employee.role.id} == 1">
+											<td>[[${order.employee.id}]](Nhân viên)</td>
+										</th:block>
+										
+									</th:block>
+									<th:block th:unless="${order.employee} != null">
+										<td>Chưa rõ</td>
+									</th:block>
+									<td><a th:href="@{/cart/order/{id}(id=${order.id})}">
+											<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+									</a></td>
+									
+								</tr>
+								
+							</tbody>
+						</table>
+					</div>
+
+				</div>
+				</nav>
+		</div>
+	</section>
+	<footer th:insert="import/footer.html"></footer>
+	<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		target=document.querySelector(".mangeCus")
+		target.classList.add("active")
+	</script>
+	
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+	
+</head>
+<body>
+	<script src="//js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
+	<script type="text/javascript">
+		bkLib.onDomLoaded(nicEditors.allTextAreas);
+	</script>
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html" style="height: 100%;"></div>
+		<div class="wrapper-table-list-customer">
+			
+			<section style="margin-top: 30px;">
+				
+				<div class="container" style="display: flex;    justify-content: space-around;">
+					<form th:action="@{/Admin/Product/save}" method="post" class="d-flex" enctype="multipart/form-data">							
+						
+						<div class="left-set d-flex" style="max-width: 650px;flex-direction: column;">
+							<img alt="Avatar" style="max-width: 400px; margin-right: 30px;"th:src="@{'../../images/Product/'+ ${product.photo}}">
+							<input type="file" name="image" style="width: 100px;" th:value="${product.photo}">
+						</div>
+						
+						
+						<div class="right-set" style="padding-right: 40px;">
+							<center><p style="color: red;">[[${message}]]</p></center> 
+						
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="text" id="form3Example1c" class="form-control" name="nameproduct" th:value="${product.nameproduct}"/>
+									<label class="form-label" for="form3Example1c">Tên sản phẩm</label>
+								</div>
+							</div>
+							
+							
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="number" id="form3Example1c" class="form-control" name="unitprice" th:value="${product.unitprice}"/>
+									<label class="form-label" for="form3Example1c">giá đơn vị*</label>
+								</div>
+							</div>
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="number" id="form3Example1c" step=0.001 class="form-control" name="discount" th:value="${product.discount}"/>
+									<label class="form-label" for="form3Example1c">giảm giá*</label>
+								</div>
+							</div>
+							
+							
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="date" id="form3Example1c" class="form-control" name="productdatee" th:value="${product.productdate}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Ngày sản phẩm*</label>
+								</div>
+							</div>
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<textarea rows="4" cols="50" placeholder="Description"  class="form-control" name="description">[[${product.description}]]</textarea>
+									<label class="form-label" for="form3Example1c">Miêu tả:*</label>
+								</div>
+							</div>
+							<div class="views-product-detail">
+								<p>Lượt xem:[[${product.views}]]</p>									
+							</div>
+							
+							<div class="select-product-detail">
+								<div class="select-two-top-product-detail sp-around">
+						          <div class="select-product-detail-status">
+						          	<h5>trạng thái*</h5>
+						          <th:block th:if="${product.status} == true">
+									<div>
+							              <input type="radio" name="status" id="rd1" value="true" style="padding-right: 30px;" checked="checked">
+							              <label for="rd1">có bán</label></div>
+					            	<div>
+							              <input type="radio" name="status" value="false" id="rd2">
+							              <label for="rd2">ngừng bán</label></div> 
+						          </th:block>
+						          <th:block th:unless="${product.status} == true">
+									<div>
+							              <input type="radio" name="status" id="rd1" value="true" style="padding-right: 30px;" >
+							              <label for="rd1">Bán</label></div>
+					            	<div>
+							              <input type="radio" name="status" id="rd2" value="false" checked="checked">
+							              <label for="rd2">Ngừng bán</label></div> 
+						          </th:block>	
+						          </div>				
+					          </div>
+							</div>
+							
+							<select name="category">
+								<th:block th:if="${product.category != null}">
+									<th:block  th:each="c : ${listCategory}">
+								  		<th:block th:if="${product.category.id == c.id}"><option th:value="@{${c.id}}"  selected="selected">[[${c.namecategoryen}]]</option></th:block> 
+								  		<th:block th:unless="${product.category.id == c.id}"><option th:value="@{${c.id}}" >[[${c.namecategoryen}]]</option></th:block> 							  		
+								  	</th:block>
+								</th:block>
+								<th:block th:unless="${product.category != null}">
+									<th:block  th:each="c : ${listCategory}">
+										<option th:value="@{${c.id}}"  selected="selected">[[${c.namecategoryen}]]</option>
+									</th:block>
+								</th:block>
+							  	
+							</select>
+							
+							<select name="producer">
+							  	<th:block th:each="c : ${listProducer}">
+							  		<th:block th:if="${product.producer == c}"><option th:value="@{${c.id}}"  selected="selected">[[${c.nameproducer}]]</option></th:block> 
+							  		<th:block th:unless="${product.producer == c}"><option th:value="@{${c.id}}" >[[${c.nameproducer}]]</option></th:block> 							  		
+							  	</th:block>
+							</select>
+							
+							<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+								<button type="submit" class="btn btn-primary btn-lg">Lưu</button>
+							</div>
+						</div>
+					</form>
+				</div>
+		</div>
+	</div>
+
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk = document.querySelector(".qlsp");
+		qltk.classList.add("active")
+		qltk.classList.add("li-con")
+		
+		qltk1 = document.querySelector(".qlsp1");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+
+</body>
+
+</html>

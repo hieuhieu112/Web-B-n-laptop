@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Danh sách đơn hàng</h2>
+			
+			<form th:action="@{/order/search}" method="post">
+							<input th:value="${param.keyword}" name="keyword" placeholder="Nhập để tìm kiếm..." style="border-radius: 10px; width: 400px;"> </form>
+			
+			<table class="table table-hover" style="margin-top:20px;">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Khách hàng</th>
+						<th>Người nhận</th>
+						<th>địa chỉ</th>
+						<th>trạng thái</th>
+						<th>số điện thoại</th>
+						<th>ngày đặt</th>
+											
+						
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="order : ${listOrder}">
+				
+					<tr>						
+						<td>[[${order.id}]]</td>
+						<td>[[${order.customer.fullname}]]</td>
+						<td>[[${order.receiver}]]</td>
+						<td>[[${order.address}]]</td>
+						
+						<td><th:block th:if = "${order.status} == 0">
+							Đã huỷ
+						</th:block>
+						<th:block th:if = "${order.status} == 1">
+							Đang xử lý
+						</th:block>
+						<th:block th:if = "${order.status} == 2">
+							Đã vận chuyển
+						</th:block>
+						<th:block th:if = "${order.status} == 3">
+							Đã hoàn thành
+						</th:block></td>	
+						<td>[[${order.numberphone}]]</td>
+						<td>[[${order.orderdate}]]</td>
+						
+						<td>
+							<a th:href="@{/Employee/Order/{id}(id=${order.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk1 = document.querySelector(".link2");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+
+
+<body>
+	<div class="wrapper d-flex align-items-stretch " ></div>
+			<nav id="sidebar" class="" style="position: fixed; height: 100vh;overflow-y: scroll;" >
+				<div class="p-4 pt-3" >
+					<div class = "home-btn-slide-bar-admin" >
+						<a href="/Admin/home">Trang Quản Lý</a>
+						
+					</div>
+			        <ul class="list-unstyled components mb-5">
+			          
+			          <li class=" qltk" style="    background: #1d1919;">
+			            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle cursorr qltk">Quản lý tài khoản</a>
+			            
+			            <ul class="collapse list-unstyled tab-slide-admin" id="homeSubmenu">
+			                <li class="qltk1">
+			                    <a href="/Admin/myAccount" class="cursorr " >Tài khoản của tôi</a>
+			                </li>
+			                
+			                <li class="qltk2">
+			                    <a href="/Admin/AccountEmployee" class="cursorr ">Tài khoản nhân viên</a>
+			                </li>
+			                
+			            </ul>
+			          </li>			          	
+			          <li class="qltk3">
+			                    <a href="/Admin/AccountCustomer" class="cursorr ">Quản lý Khách hàng</a>
+			                </li>
+			          <li class="qldh">
+		              	<a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle cursorr">Quản lý đơn hàng</a>
+			              
+			              <ul class="collapse list-unstyled tab-slide-admin" id="pageSubmenu">
+			              
+			              		<li class="qldh1">
+				              		<a href="/Admin/listOrder" class="cursorr ">Phiếu đặt/ Hoá đơn</a>
+					          	</li>
+			                
+			                
+			                
+			                
+			              </ul>
+			          </li>
+			          <li class="qlsp">
+				         <a class="accordion cursorr" style="background: #1d1919;padding: 10px 0px; ">
+				         	 	Quản lý sản phẩm
+				         	 	<i class="fa-solid fa-caret-down fa-xs"></i>
+				         	 </a>
+							
+						<div class="panel" style="background: #1d1919;padding: 0px;">
+						 	<ul style="list-style: none;">
+						 		<li class="qlsp1">			          
+					              <a href="/Admin/listProduct" class="cursorr">Sản phẩm</a>
+					          </li>
+					          
+					          	<li class="qlsp2">
+			                    	<a href="/Admin/listCategory" class="cursorr">Loại sản phẩm</a>
+			                	</li>
+					          <li class="qlsp3">
+				              	<a href="/Admin/listProducer" class="cursorr">Nhà cung cấp</a>
+					          </li>
+					          <li class="qlsp4">
+				              	<a href="/Admin/listReceipt" class="cursorr">Phiếu nhập</a>
+					          </li>
+							 </ul>
+						</div>
+			          </li>
+			          
+			          <li class="tkdt">
+				         <a class="accordion cursorr" style="background: #1d1919;padding: 10px 0px; " >
+				         	Thống kê Doanh thu
+				         	 	<i class="fa-solid fa-caret-down fa-xs"></i>
+				         	 </a>
+							
+						<div class="panel" style="background: #1d1919;padding: 0px;">
+						 	<ul style="list-style: none;">
+						 		<li class="tkdt1">			          
+					              <a href="/Admin/statisticsByTime" class="cursorr">Theo thời gian</a>
+					          </li>
+					          <li class ="tkdt2">
+					              <a href="/Admin/statisticsByProduct" class="cursorr">Theo sản phẩm</a>
+					          </li>			
+					           <li class="tkdt3">
+					              <a href="/Admin/statisticsByCategory" class="cursorr">Theo loại sản phẩm</a>
+					          </li>				         
+							 </ul>
+						</div>
+			          </li>
+			          
+			          <ul class="list-unstyled components mb-5">
+			          
+			         
+			          <li>
+		              <a href="/logout" class="cursorr">Đăng xuất</a>
+			          </li>
+			        </ul>
+	
+		        <div class="footer">
+		        	<p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+							  Copyright ©<script>document.write(new Date().getFullYear());</script>
+							  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+		        </div>
+	      </div>
+    	</nav>
+    	<script>
+			var acc = document.getElementsByClassName("accordion");
+			var i;
+			
+			for (i = 0; i < acc.length; i++) {
+			  acc[i].addEventListener("click", function() {
+			    this.classList.toggle("active");
+			    var panel = this.nextElementSibling;
+			    if (panel.style.maxHeight) {
+			      panel.style.maxHeight = null;
+			    } else {
+			      panel.style.maxHeight = panel.scrollHeight + "px";
+			    } 
+			  });
+			}
+		</script>
+		</body>
+
+</html>

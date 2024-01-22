@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<div style="display: flex;align-items: center;justify-content: space-between;">
+				<h2>Danh sách sản phẩm</h2>
+				<form th:action="@{/Employee/product/search}" method="post">
+							<input th:value="${param.keyword}" name="keyword" placeholder="Nhập để tìm kiếm." style="border-radius: 10px; width: 400px;"> </form>
+				
+			</div>
+			
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Tên</th>
+						<th>Số lượng</th>
+						<th>Ngày tạo</th>
+						<th>Giá tiền($)</th>
+						<th>Giảm giá</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="product : ${listProduct}">
+				
+					<tr>						
+						<td>[[${product.id}]]</td>
+						<td>[[${product.nameproduct}]]</td>
+						<td>[[${product.quantity}]]</td>
+						<td>[[${product.productdate}]]</td>
+						<td>[[${product.unitprice}]]</td>
+						<td>[[${product.discount}]]</td>
+						<td>
+							<a th:href="@{/Employee/Product/{id}(id=${product.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk1 = document.querySelector(".link3");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

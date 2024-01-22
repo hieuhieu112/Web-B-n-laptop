@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+	
+</head>
+
+<body>
+	<header th:insert="import/header.html"> </header>
+		[[${customer}]]
+		<section class="ftco-section row">
+	
+		<div class="container-content" style="display: flex; align-items: center;     flex-direction: column;">
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+				<h4 style="padding-left: 20px;">Bán chạy</h4>
+					<a th:href="@{/product/bestSellers}" style="color: blue;padding-right: 20px;">Xem thêm</a>
+					
+				</div>
+				
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 listPro" style="padding-top: 30px !important;" th:each="p : ${listBestSeller}">
+						<div class="proIcon" ><a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.id}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]$</p>
+						</a></div>
+					</div>
+				</div>
+			</div>
+			
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Mới nhất</h4>
+					<a th:href="@{/product/newest}" style="color: blue;padding-right: 20px;">Xem thêm</a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 listPro" style="padding-top: 30px !important;" th:each="p : ${listNewest}">
+						<div class="proIcon" ><a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.productdate}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]$</p>
+						</a></div>
+					</div>
+				</div>
+			</div>
+
+			<div>
+			<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Sản phẩm xem nhiều nhất</h4>
+					<a th:href="@{/product/mostInterest}" style="color: blue;padding-right: 20px;">Xem thêm</a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 listPro" style="padding-top: 30px !important;"  th:each="p : ${listInterest}">
+						<div class="proIcon" ><a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.views}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]$</p>
+						</a></div>
+					</div>
+				</div>		
+				
+			</div>
+			
+			<div>
+				<div class="d-flex" style="justify-content: space-between;">
+					<h4 style="padding-left: 20px;">Sản phẩm giảm giá</h4>
+					<a th:href="@{/product/bigDiscount}" style="color: blue;padding-right: 20px;">Xem thêm</a>
+				</div>
+				<div class="d-flex " style="flex-wrap: nowrap !important;justify-content: center">
+					<div class="col-sm-2 listPro" style="padding-top: 30px !important;"  th:each="p : ${listDiscount}">
+						<div class="proIcon" >
+						<a th:href="@{/listProduct/{id}(id = ${p.id})}"> 
+							<img class="img" style ="width: 100px;" th:title="${p.discount}" th:src="@{'../images/Product/'+ ${p.photo}}">
+							<h5>[[${p.nameproduct}]]</h5>
+							<p style="color: #2b2828;">[[${p.unitprice}]]$</p>
+						</a>
+						</div>
+					</div>
+				</div>
+				
+			</div>		
+			
+			
+		</div>
+
+		<footer th:insert="import/footer.html"> </footer>
+
+	</section>
+	<script th:src="@{js/jquery.min.js}"></script>
+	<script th:src="@{js/popper.js}"></script>
+	<script th:src="@{js/bootstrap.min.js}"></script>
+	<script th:src="@{js/main.js}"></script>
+
+</body>
+
+</html>

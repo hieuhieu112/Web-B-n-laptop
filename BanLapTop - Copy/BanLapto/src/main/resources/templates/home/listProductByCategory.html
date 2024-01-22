@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+
+<head th:insert="import/import.html">
+<body>
+	<header th:insert="import/header.html"> </header>
+	<div class="container">
+		<div class="d-flex flex-wrap" style="padding-top: 125px">
+			<th:block th:each="product:${listProduct}">
+				<div class="col-sm-4" >	
+					<div class="thumbnail p-2 mx-1" style ="background-color: #eaeef1; color:#393608; margin-bottom: 20px;" >				
+						<div>
+					       <a th:href="@{/listProduct/{id}(id = ${product.id})}">
+					         <img th:src="@{'/images/Product/'+ ${product.photo}}" th:title="${product.id}" alt="Image product" style=" height: 150px; object-fit: cover; width:100%">
+					         </a>
+					         <div class="caption d-flex">
+					         <div>
+					           <p>[[${product.nameproduct}]]</p>
+					           <p>[[${product.unitprice}]] $</p>
+					           <p th:if="product.discount != 0.0"></p></div>
+					           <div class="d-flex pull-right" style="align-items: center;" th:product-id="@{${product.id}}">
+					           		<a th:href="@{/cart/addToCart/{id}(id=${product.id})}">
+							     		<i class="fa-solid fa-cart-shopping p-3 fa-xl mr-1 mb-2 bg-secondary add-to-cart" style="color: #ffffff;"></i></a>
+							     		<i class="fa-solid fa-share fa-xl p-3 mb-2 mr-1 bg-secondary " style="color: #ffffff;" th:product="@{${product.id}}"></i>
+							     	<a th:href="@{/addToCookie/{id}(id=${product.id})}" th:product="@{${product.id}}">
+							     		<i class="fa-solid fa-heart fa-xl p-3 mb-2 bg-secondary add-to-cookie" style="color: #ffffff;"></i></a>
+					     </div>
+					         </div>
+					       
+					     </div>
+					     
+				     </div>
+				</div>
+			</th:block>
+
+		</div>
+	</div>
+
+
+	<section class="ftco-section">
+
+
+
+		<footer th:insert="import/footer.html"></footer>
+
+	</section>
+
+<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		target=document.querySelector(".category")
+		target.classList.add("active")
+		
+		cli = document.querySelectorAll(".fa-share");
+		for (i in cli){
+			var item = cli[i];
+			item.onclick = ()=>{
+				var str = "http://localhost:8084/listProduct/";
+				console.log(this.target.parentElement.getAttribute('product'));
+				str = str.concat(this.target.parentElement.getAttribute('product'));
+				console.log(str);
+				navigator.clipboard.writeText(window.location.href);
+			}
+		}
+	</script>
+</body>
+
+</html>

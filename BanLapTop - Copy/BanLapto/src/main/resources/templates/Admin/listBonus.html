@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Bảng giảm giá</h2>
+			
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Giảm</th>
+						<th>Lý do</th>
+						<th>Ngày viết</th>
+						<th>Ngày bắt đầu</th>
+						<th>ngày kết thúc</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="bonus : ${listBonus}">
+				
+					<tr>						
+						<td>[[${bonus.id}]]</td>
+						<td>[[${bonus.amount}]]</td>
+						<td>[[${bonus.reason}]]</td>
+						<td>[[${bonus.datewrite}]]</td>
+						<td>[[${bonus.datestart}]]</td>
+						<td>[[${bonus.dateend}]]</td>
+						<td>
+							<a >
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							<a >
+								<i class="fa-solid fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				
+				</tbody>
+					<tr>
+						<td colspan="7"><a style="color:#212529;" ><i class="fa-solid fa-plus" style="color: #1e3050; margin-right: 5px;"></i>Add new Bonus</a></td>
+						
+					</tr>
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

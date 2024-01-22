@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:insert="import/import.html">
+	
+</head>
+<body>
+	<header th:insert="import/header.html"> </header>
+	
+	<footer th:insert="import/footer.html"></footer>
+	
+	<script>
+		home = document.querySelector(".homeLink");
+		home.classList.remove("active")
+		target=document.querySelector(".mangeCus")
+		target.classList.add("active")
+	</script>
+</body>
+</html>

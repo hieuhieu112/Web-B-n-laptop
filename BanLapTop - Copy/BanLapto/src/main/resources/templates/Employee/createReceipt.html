@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html" style="height: 100%;"></div>
+		<div class="wrapper-table-list-customer">
+
+			<section>
+
+				<div class="container d-flex" style="flex-direction: column;">
+
+
+					<p class="text-center h1 fw-bold mx-1 mx-md-4">Tạo phiếu nhập</p>
+					<p class="text-center h5"></p>
+					<form class="mx-1 mx-md-4" th:action="@{/Employee/createReceipt}" method="post">
+						<div class="row d-flex justify-content-center align-items-center h-100 w-100">
+							<div class="col-lg-12 col-xl-11">
+								<div class="text-black" style="border-radius: 25px;">
+									<div class="card-body p-md-5"
+										style="padding-top: 0px !important;">
+										<div class="row" style="flex-direction: column; align-items: center;">
+											<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="date" id="form3Example1c" class="form-control" th:value="@{${receipt.dateimport}}" readonly="readonly" style="width: 200px;" /> 
+														<label class="form-label" for="form3Example1c">Ngày tạo</label>
+													</div>
+												</div>
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" th:value="@{${receipt.producer.nameproducer}}" readonly="readonly" style="width: 200px;" />
+														<label class="form-label" for="form3Example1c">Nhà cung cấp</label>
+													</div>
+												</div>
+
+												
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" th:value="@{${receipt.employee.id}}" readonly="readonly" style="width: 200px;" /> 
+																<label class="form-label" for="form3Example1c">ID Người tạo:</label>
+														</div>
+													</div>
+												<th:block th:if="${receipt.employee.role == 1}">
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" value="Nhân viên" readonly="readonly" style="width: 200px;" /> 
+															<label class="form-label" for="form3Example1c">Vị trí người tạo:</label>
+														</div>
+													</div>
+												</th:block>
+												
+												<th:block th:if="${receipt.employee.role == 0}">
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" th:value="Admin" readonly="readonly" style="width: 200px;" /> 
+															<label class="form-label" for="form3Example1c">Vị trí người tạo:</label>
+														</div>
+													</div>
+												</th:block>
+
+												
+
+
+												
+
+											</div>
+
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div>
+							
+							<p style="color: red;">[[${message}]]</p>
+							<table class="table table-hover mt-5">
+								<thead style="background-color: #353a40; color: #ccc;">
+									<tr>
+										<th>id</th>
+										<th>Tên</th>
+										<th>Số lượng</th>
+										<th>Giá nhập</th>
+										<th>Thành tiền</th>
+									</tr>
+								</thead>
+								<tbody th:each="product : ${listProduct}">
+
+									<tr>
+										<td>[[${product.id}]]</td>
+										<td>[[${product.nameproduct}]]</td>
+										<td>
+											<i class="fa-solid fa-minus"></i> 
+											<input type="number" value="0" th:id="inputQuantity" th:name="@{quantity{id}(id=${product.id})}" readonly="readonly" style="width: 50px;"> 
+											<i class="fa-solid fa-plus"></i>
+										</td>
+										
+										<td>
+											<input type="number" value="0" th:name="@{unit{id}(id=${product.id})}" th:id="inputProductdate" style="width: 150px;">
+										</td>
+										
+										<td id="total">0</td>
+									</tr>
+
+								</tbody>
+
+							</table>
+						</div>
+
+
+
+						<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+							<button type="submit" class="btn btn-primary btn-lg">Lưu</button>
+						</div>
+					</form>
+
+
+				</div>
+
+
+			</section>
+
+		</div>
+
+	</div>
+
+	<script>
+		var pluss = document.querySelectorAll(".fa-plus");
+		
+		pluss.forEach( plus =>{
+				plus.addEventListener("click", function (e){
+				
+					var quantity = plus.closest("td");
+					quantity = quantity.querySelector("input");
+					quantity.value = Number(quantity.value) +1;
+					
+					
+					
+					var tr = plus.closest("tr");
+					
+					var unit = tr.querySelector("#inputProductdate");
+					
+					
+					
+					var total = tr.querySelector("#total");
+					var num = (Number(quantity.value) *Number(unit.value));
+					total.innerText = num.toFixed(1);
+			});
+			}
+		)
+		
+		
+		var minuss = document.querySelectorAll(".fa-minus");
+		minuss.forEach(minus=>{
+			minus.addEventListener("click", function (e){
+					var quantity = minus.closest("td");
+					quantity = quantity.querySelector("input");
+					if(quantity.value > 0){
+						quantity.value = Number(quantity.value) - 1;
+						
+						
+						
+						var tr = minus.closest("tr");
+						
+						var unit = tr.querySelector("#inputProductdate");
+						var discount = tr.querySelector("#discount");
+						
+						
+						var total = tr.querySelector("#total");
+						var num = (Number(quantity.value) *Number(unit.value));
+						total.innerText = num.toFixed(1);
+						console.log(num.toFixed(1));
+					}
+				
+			})
+		})
+		
+		
+		var inputs = document.querySelectorAll("#inputProductdate");
+		inputs.forEach(input=>{
+			input.addEventListener("change", function (e){
+				var tr = input.closest("tr");
+				
+				var quantity = tr.querySelector("#inputQuantity");
+				var discount = tr.querySelector("#discount");
+				
+				
+				var total = tr.querySelector("#total");
+				var num = (Number(quantity.value) *Number(input.value));
+				total.innerText = num.toFixed(1);
+			})
+		})
+		
+	</script>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk1 = document.querySelector(".link4");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

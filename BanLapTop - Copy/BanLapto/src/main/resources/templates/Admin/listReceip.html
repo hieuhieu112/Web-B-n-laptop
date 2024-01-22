@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Table Receipt</h2>
+			
+			<form th:action="@{/Admin/Receipt/search}" method="post">
+							<input th:value="${param.keyword}" name="keyword" placeholder="Type anything to search." style="border-radius: 10px; width: 400px;"> </form>
+			
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>ID</th>
+						<th>ID creator</th>
+						<th>position creator</th>
+						<th>Producer</th>
+						<th>Date Import</th>
+						<th>Total</th>	
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="r : ${listReceipt}">
+				
+					<tr>						
+						<td>[[${r.id}]]</td>
+						<th:block th:if="${r.employee.role == 0}">
+							<td >[[${r.employee.id}]]</td>
+							<td>Employee</td>
+						</th:block>
+						<th:block th:if="${r.employee.role == 1}">
+							<td >[[${r.employee.id}]]</td>
+							<td>Admin</td>
+						</th:block>
+						<td>[[${r.producer.id}]]</td>
+						<td>[[${r.dateimport}]]</td>
+						<td>[[${r.total}]]</td>
+						<td>
+							<a th:href="@{/Admin/Receipt/{id}(id=${r.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

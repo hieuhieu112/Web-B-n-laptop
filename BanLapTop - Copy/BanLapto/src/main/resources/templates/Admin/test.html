@@ -1,0 +1,75 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Language', 'Speakers (in millions)'],
+          ['trước 22h',  6],
+          ['22h - 23h',  13],
+          ['23h- 0h', 17],
+          ['0h - 1h', 35],
+          ['1h - 2h', 21],
+          ['sau 2h', 8]
+        ]);
+
+      var options = {
+        legend: 'none',
+        pieSliceText: 'label',
+        title: 'Bạn thường đi ngủ vào khoảng thời gian nào',
+        pieStartAngle: 100,
+      };
+
+        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+        chart.draw(data, options);
+      }
+    </script>
+    <style>
+      body{
+        background-color: #f0ebf8;
+      }
+    </style>
+  </head>
+  <body style="display: flex;  align-items: center; text-align: center; justify-content: center;">
+    <div style="background-color: #fff; display: flex; width: 30%; align-items: center; text-align: center;     justify-content: space-around; border-radius: 9px;" >
+      <div id="piechart" style="max-width: 900px; height: 500px;">
+      </div>
+
+      <div style="display: flex;flex-wrap: wrap;flex-direction: column; align-items: flex-start;">
+         <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #36c; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">trước 22h</text></g>          
+        </g>
+        <!-- <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #dc3912; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">22h-23h</text></g>
+        </g>
+
+        <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #f90; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">23h - 0h</text></g>
+        </g>
+
+        <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #109618; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">0h-1h</text></g>
+        </g>
+
+        <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #0099c6; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">1h-2h</text></g>
+        </g>
+
+        <g column-id="0h-1h"><rect x="463" y="67" width="233" height="12" stroke="none" stroke-width="0" fill-opacity="0" fill="#ffffff"></rect><g>
+          <i class="fa-solid fa-circle fa-2xs"style="color: #dc3912; margin-right: 5px;"></i>
+          <text text-anchor="start" x="480" y="77.2" font-family="Arial" font-size="12" stroke="none" stroke-width="0" fill="#222222">Sau 2h</text></g>
+        </g> -->
+      </div>
+     
+    
+  </div>
+  </body>
+</html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Employee/import.html">
+	
+</head>
+<body>
+	
+	<div class="all" style="display: flex;">
+		<div th:insert="Employee/slideBar.html" style="height: 100%;"></div>
+		<div class="wrapper-table-list-customer">
+			
+			<section style="margin-top: 30px;">
+				
+				<div class="container" style="display: flex;    justify-content: space-around;">
+											
+						
+						<div class="left-set d-flex" style="max-width: 650px;flex-direction: column;">
+							<img alt="Avatar" style="max-width: 400px; margin-right: 30px;"th:src="@{'../../images/Product/'+ ${product.photo}}">
+							
+						</div>
+						
+						
+						<div class="right-set" style="padding-right: 40px;">
+							<center><p style="color: red;">[[${message}]]</p></center> 
+						
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="text" id="form3Example1c" class="form-control" name="nameproduct" th:value="${product.nameproduct}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Tên sản phẩm*</label>
+								</div>
+							</div>
+							
+							
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="number" id="form3Example1c" class="form-control" name="unitprice" th:value="${product.unitprice}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Giá đơn vị*</label>
+								</div>
+							</div>
+							
+							
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="date" id="form3Example1c" class="form-control" name="productdatee" th:value="${product.productdate}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Ngày tạo:*</label>
+								</div>
+							</div>
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<textarea rows="4" cols="50" placeholder="Mô tả" readonly="readonly"  class="form-control" name="description">[[${product.description}]]</textarea>
+									<label class="form-label" for="form3Example1c">Mô tả:*</label>
+								</div>
+							</div>
+							<div class="views-product-detail">
+								<p>Lượt xem:   [[${product.views}]]</p>									
+							</div>
+							
+							<div class="select-product-detail">
+								
+					         	
+					          <div class="select-two-bottom-product-detail sp-around">
+						          
+						          
+						          <div class="select-product-detail-status">
+						          	
+						          <th:block th:if="${product.status} == true">
+										Còn 	bán
+						          </th:block>
+						          <th:block th:unless="${product.status} == true">
+										Ngừng bán
+						          </th:block>	
+						          </div>				
+					          </div>
+							</div>
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="text" id="form3Example1c" class="form-control" name="productdatee" th:value="${product.category.namecategoryen}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Thể loại:*</label>
+								</div>
+							</div>
+							
+							<div class="d-flex flex-row align-items-center mb-4">
+								<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+								<div class="form-outline flex-fill mb-0">
+									<input type="text" id="form3Example1c" class="form-control" name="productdatee" th:value="${product.producer.nameproducer}" readonly="readonly"/>
+									<label class="form-label" for="form3Example1c">Nhà cung cấp:*</label>
+								</div>
+							</div>
+							
+							
+							
+							
+						</div>
+					</form>
+				</div>
+		</div>
+	</div>
+
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk1 = document.querySelector(".link3");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

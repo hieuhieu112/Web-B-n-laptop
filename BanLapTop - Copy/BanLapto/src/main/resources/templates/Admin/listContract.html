@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<div style="display: flex;align-items: center;justify-content: space-between;">
+				<h2>bảng hợp đồng</h2>
+				<form>
+								<input  name="keyword" placeholder="Type anything to search." style="border-radius: 10px; width: 400px;"> </form>
+					<a style="color: #1e3050; margin-right: 50px;"><i class="fa-solid fa-plus fa-xl" ></i></a>
+				</div>
+			<p style="color: red;">[[${message}]]</p>
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Tên</th>
+						<th>Ngày bătd đầu</th>
+						<th>ngày kết thúc</th>
+						<th>trợ cấp</th>
+						<th>bảo hiểm</th>
+						<th>lương</th>
+						<th>trạng thái</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="contract : ${listContract}">
+				
+					<tr>						
+						<td>[[${contract.id}]]</td>
+						<td>[[${contract.namecontract}]]</td>
+						<td>[[${contract.starttime}]]</td>
+						<td>[[${contract.endtime}]]</td>
+						<td>[[${contract.subsidize}]]</td>
+						<td>[[${contract.insurrance}]]</td>
+						<td>[[${contract.salary}]]</td>
+						<td>[[${contract.status}]]</td>
+						<td>
+							<a >
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							<a>
+								<i class="fa-solid fa-trash"></i>
+							</a>
+						</td>
+					</tr>
+				
+				</tbody>
+					
+			</table>
+		</div>
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+
+</body>
+
+</html>

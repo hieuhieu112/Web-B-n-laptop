@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+<body>
+
+	<div class="all" style="display: flex;">
+		<div th:insert="Admin/slideBar.html"></div>
+
+		<div class ="wrapper-table-list-customer">
+			<h2>Bảng khách hàng</h2>
+			<p style="color:red;">[[${message}]]</p>
+			<table class="table table-hover">
+				<thead style="background-color: #353a40; color: #ccc;">
+					<tr>
+						<th>id</th>
+						<th>Tên</th>
+						<th>Email</th>
+						<th>SDT</th>
+						<th>Địa chỉ</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody th:each="customer : ${listCustomer}">
+				
+					<tr>						
+						<td>[[${customer.id}]]</td>
+						<td>[[${customer.fullname}]]</td>
+						<td>[[${customer.email}]]</td>
+						<td>[[${customer.numberphone}]]</td>
+						<td>[[${customer.address}]]</td>
+						<td>
+							<a th:href="@{/Admin/Customer/{id}(id=${customer.id})}">
+								<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+							</a>
+							<a th:href="@{/Admin/Customer/delete/{id}(id=${customer.id})}">
+								<i class="fa-solid fa-trash"></i>
+							</a>
+						</td>
+					</tr>					
+				</tbody>
+				<tr>
+					<td colspan="6"><a style="color:#212529;" th:href="@{/Admin/listAccountCustomer/Add}"><i class="fa-solid fa-plus" style="color: #1e3050; margin-right: 5px;"></i>Thêm khách hàng</a></td>
+				</tr>
+			</table>
+		</div>
+		
+		
+	</div>
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		
+		qltk1 = document.querySelector(".qltk3");
+		qltk1.classList.add("active")
+		qltk1 = document.querySelector(".qltk3");
+		qltk1.classList.add("li-con")
+	</script>
+</body>
+
+</html>

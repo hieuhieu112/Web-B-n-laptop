@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="import/import.html">
+
+<body style="background-color: #f8f8f8;">
+	<div >
+		<div th:insert="Admin/slideBar.html"> </div>
+		<div style="margin-left:  300px;">
+			<div style="display: flex;    flex-direction: row-reverse;">
+				<img  alt="Logo web" th:src="@{../../../images/logo2.png}" style="height: 100%; text-align: center;">
+			</div>
+			<div style="margin-top: 50px;">
+				<center>
+				<img  alt="Ảnh zui zui" th:src="@{../../../images/adminn.jpg}" style="width: 80%;"></center>
+			</div>
+		</div>
+	</div>	
+	
+	
+	<script th:src="@{../js/jquery.min.js}"></script>
+	<script th:src="@{../js/popper.js}"></script>
+	<script th:src="@{../js/bootstrap.min.js}"></script>
+	<script th:src="@{../js/main.js}"></script>
+
+</body>
+
+</html>

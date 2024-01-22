@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en" xmlns:th="https://www.thymeleaf.com">
+
+<head th:insert="Admin/import.html">
+
+<body>
+	<div class = "all" style = "display: flex;">
+		<div th:insert="Admin/slideBar.html" style="height: 100%;"> </div>
+		<div class ="wrapper-table-list-customer">
+
+			<section>
+			
+				<div class="container" style ="display: flex;">				
+					<div class="row d-flex justify-content-center align-items-center h-100 w-100">
+						<div class="col-lg-12 col-xl-11">
+							<div class="text-black" style="border-radius: 25px;">
+								<div class="card-body p-md-5" style="padding-top: 0px !important;">
+									<div class="row" style ="justify-content: flex-start;">
+										<div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+
+											<p class="text-center h1 fw-bold mx-1 mx-md-4"> Phiếu nhập </p>
+											<p class="text-center h5">ID:   [[${receipt.id}]]</p>
+											<form class="mx-1 mx-md-4" >
+
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="date" id="form3Example1c" class="form-control" th:value="@{${receipt.dateimport}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">Ngày nhập</label>
+													</div>
+												</div>
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">														
+														<label class="form-label" for="form3Example1c">Tổng tiền:   [[${#numbers.formatInteger(amount,0)}]]$</label>
+													</div>
+												</div>		
+												
+												<th:block th:if="${receipt.employee.role.id == 1}">
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" th:value="@{${receipt.employee.id}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">ID người tạo:</label>
+														</div>
+													</div>		
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" value="Nhân viên" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Cấp bậc người tạo:</label>
+														</div>
+													</div>	
+												</th:block>	
+												
+												<th:block th:if="${receipt.employee.role.id == 0}">
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control"  th:value="@{${receipt.employee.id}}" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">ID người tạo:</label>
+														</div>
+													</div>		
+													
+													<div class="d-flex flex-row align-items-center mb-4">
+														<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+														<div class="form-outline flex-fill mb-0">
+															<input type="text" id="form3Example1c" class="form-control" value="Admin" readonly="readonly"/>
+															<label class="form-label" for="form3Example1c">Cấp bậc người tạo:</label>
+														</div>
+													</div>	
+												</th:block>		
+													
+												
+												<div class="d-flex flex-row align-items-center mb-4">
+													<i class="fas fa-user fa-lg me-3 fa-fw"></i>
+													<div class="form-outline flex-fill mb-0">
+														<input type="text" id="form3Example1c" class="form-control" th:value="@{${receipt.producer.nameproducer}}" readonly="readonly"/>
+														<label class="form-label" for="form3Example1c">Nhà cung cấp</label>
+													</div>
+												</div>
+												
+											</form>
+
+										</div>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
+				<div >
+					<h2>Chi tiết phiếu nhập</h2>
+					
+					<table class="table table-hover">
+						<thead style="background-color: #353a40; color: #ccc;">
+							<tr>
+								<th>id</th>
+								<th>số lượng</th>
+								<th>Giá đơn vị</th>
+								<th>Tên sản phẩm</th>
+								<th></th>
+							</tr>
+						</thead>
+						<tbody th:each="o : ${listReceiptDetail}">
+						
+							<tr>						
+								<td>[[${o.id}]]</td>
+								<td>[[${o.quantity}]]</td>
+								<td>[[${o.unitprice}]]</td>
+								<td>[[${o.product.nameproduct}]]</td>
+								<td>
+									<a th:href="@{/Admin/Product/{id}(id=${o.product.id})}">
+										<i class="fa-solid fa-circle-info" style="color: #1e3050;"></i>
+									</a>
+									
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</section>
+		</div>
+	</div>
+	
+	<script th:src="@{../../js/jquery.min.js}"></script>
+	<script th:src="@{../../js/popper.js}"></script>
+	<script th:src="@{../../js/bootstrap.min.js}"></script>
+	<script th:src="@{../../js/main.js}"></script>
+	<script>
+		qltk = document.querySelector(".qlsp");
+		qltk.classList.add("active")
+		qltk.classList.add("li-con")
+		
+		qltk1 = document.querySelector(".qlsp4");
+		qltk1.classList.add("active")
+		qltk1.classList.add("li-con")
+	</script>
+</body>	
+
+</html>
